@@ -1,0 +1,28 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="
+        http://java.sun.com/xml/ns/javaee
+        http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+
+  <!--配置DispatcherServlet-->
+  <servlet>
+    <servlet-name>springDispatcherServlet</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <!--配置DispatcherServlet的一个初始化参数：配置SpringMvc配置文件的位置和名称-->
+    <!--实际上也可以不通过contextConfigLocation来配置SpringMVC的配置文件，而是用默认的
+    默认的配置文件为：/WEB-INF/<servlet-name>-servlet.xml,例如：springDispatcherServlet.xml
+    -->
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:application.xml</param-value>
+    </init-param>
+    <!--springDispatcherServlet是在项目被加载的时候创建，而不是在第一次调用的时候被创建-->
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>springDispatcherServlet</servlet-name>
+    <!--匹配到所有路径-->
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+</web-app>
